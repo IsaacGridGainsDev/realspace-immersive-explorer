@@ -33,7 +33,11 @@ export const SpawnZone = () => {
       {/* Platform */}
       <mesh position={[0, -0.5, 0]} receiveShadow>
         <cylinderGeometry args={[8, 8, 1, 32]} />
-        <meshStandardMaterial color="#2a2a2a" roughness={0.8} metalness={0.2} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          roughness={0.8} 
+          metalness={0.2} 
+        />
       </mesh>
       
       {/* Center glow */}
