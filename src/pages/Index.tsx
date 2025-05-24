@@ -1,12 +1,14 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Scene } from "../components/Scene";
+import { HUD } from "../components/ui/HUD";
+import { LoadingScreen } from "../components/ui/LoadingScreen";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+      <Scene />
+      <HUD />
+      <LoadingScreen />
     </div>
   );
 };
