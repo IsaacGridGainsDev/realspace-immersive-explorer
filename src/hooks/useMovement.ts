@@ -1,41 +1,75 @@
 
 import { useRef, useEffect } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { Vector3 } from 'three'
 
 export const useMovement = () => {
-  const velocity = useRef(new Vector3())
   const keys = useRef({
-    w: false, a: false, s: false, d: false
+    w: false, 
+    a: false, 
+    s: false, 
+    d: false
   })
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      e.preventDefault()
       switch(e.code) {
-        case 'KeyW': keys.current.w = true; break
-        case 'KeyA': keys.current.a = true; break
-        case 'KeyS': keys.current.s = true; break
-        case 'KeyD': keys.current.d = true; break
+        case 'KeyW': 
+        case 'ArrowUp':
+          keys.current.w = true
+          break
+        case 'KeyA': 
+        case 'ArrowLeft':
+          keys.current.a = true
+          break
+        case 'KeyS': 
+        case 'ArrowDown':
+          keys.current.s = true
+          break
+        case 'KeyD': 
+        case 'ArrowRight':
+          keys.current.d = true
+          break
       }
     }
 
     const handleKeyUp = (e: KeyboardEvent) => {
+      e.preventDefault()
       switch(e.code) {
-        case 'KeyW': keys.current.w = false; break
-        case 'KeyA': keys.current.a = false; break
-        case 'KeyS': keys.current.s = false; break
-        case 'KeyD': keys.current.d = false; break
+        case 'KeyW': 
+        case 'ArrowUp':
+          keys.current.w = false
+          break
+        case 'KeyA': 
+        case 'ArrowLeft':
+          keys.current.a = false
+          break
+        case 'KeyS': 
+        case 'ArrowDown':
+          keys.current.s = false
+          break
+        case 'KeyD': 
+        case 'ArrowRight':
+          keys.current.d = false
+          break
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown)
-    document.addEventListener('keyup', handleKeyUp)
+    // Add event listeners to window to ensure they work
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp)
+
+    // Focus the canvas to ensure it receives keyboard events
+    const canvas = document.querySelector('canvas')
+    if (canvas) {
+      canvas.focus()
+      canvas.setAttribute('tabindex', '0')
+    }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('keyup', handleKeyUp)
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp)
     }
   }, [])
 
-  return { velocity, keys }
+  return { keys }
 }
