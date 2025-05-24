@@ -14,9 +14,9 @@ export const HUD = () => {
       
       <div className="controls-info">
         <div>Controls:</div>
+        <div>Click - Lock cursor & look around</div>
         <div>WASD - Move</div>
-        <div>Mouse - Look Around</div>
-        <div>Click - Interact</div>
+        <div>ESC - Unlock cursor</div>
       </div>
     </>
   )
